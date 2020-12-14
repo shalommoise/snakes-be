@@ -1,0 +1,25 @@
+{
+  "name": "snakes-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shalommoise/snakes-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shalommoise/snakes-be/issues"
+  },
+  "homepage": "https://github.com/shalommoise/snakes-be#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.13",
+    "pg": "^8.5.1"
+  }
+}
