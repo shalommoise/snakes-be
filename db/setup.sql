@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS snakes_test;
+DROP DATABASE IF EXISTS snakes_test;
+
+CREATE DATABASE snakes_test;
+CREATE DATABASE snakes_test;
