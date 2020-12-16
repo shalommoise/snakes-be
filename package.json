@@ -25,6 +25,7 @@
   "homepage": "https://github.com/shalommoise/snakes-be#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "jest": "^26.6.3",
     "knex": "^0.21.13",
     "pg": "^8.5.1"
   }
