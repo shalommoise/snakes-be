@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "setup-dbs": "psql -f ./db/setup.sql",
     "migrate-make": "knex migrate:make",
     "migrate-latest": "knex migrate:latest",
