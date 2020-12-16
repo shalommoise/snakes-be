@@ -1,4 +1,4 @@
-const passwordGenorator =()=>{
+const passwordGenerator =()=>{
 
 const secondChar = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 const thirdChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -10,4 +10,4 @@ const code = "$"+ secondChar+ thirdChar + fourthChar;
 };
 
 
-module.exports ={passwordGenorator}
+module.exports ={passwordGenerator}

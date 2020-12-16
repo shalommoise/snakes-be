@@ -1,4 +1,4 @@
-const {passwordGenorator} = require("../../utils/utils")
+const {passwordGenerator} = require("../../utils/utils")
 exports.up = function(knex) {
     return knex.schema.createTable("games", (gamesTable) => {
     gamesTable.increments("game_id").primary();
