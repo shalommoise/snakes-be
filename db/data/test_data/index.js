@@ -4,5 +4,5 @@ module.exports = [
     player2: "b",
   },{
     player1: "ad",
-    player2: "ef",
+    
   }]
