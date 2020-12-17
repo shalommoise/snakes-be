@@ -1,12 +1,17 @@
-const {passwordGenerator} = require("../../utils/utils")
+const {passwordGenerator, radnomCoordinate} = require("../../utils/utils")
 exports.up = function(knex) {
     return knex.schema.createTable("games", (gamesTable) => {
     gamesTable.increments("game_id").primary();
-    gamesTable.integer("login_code").defaultsTo(new passwordGenorator());
+    gamesTable.string("login_code").defaultsTo(passwordGenerator());
     gamesTable.string("player1").notNullable();
     gamesTable.string("player2").defaultsTo("player2");
-    gamesTable.string("snake1").defaultsTo([[],344]);
-    gamesTable.string("snake2").defaultsTo([[],24]);
+    gamesTable.specificType("snake1", "text ARRAY").defaultsTo([['2:15','3:15'],'4:15']);
+    gamesTable.specificType("snake2", "text ARRAY").defaultsTo([['28:15','27:15'],'29:15']);
+    gamesTable.specificType("food","text ARRAY").defaultsTo(radnomCoordinate(30));
+    gamesTable.integer("points1").defaultTo(0);
+    gamesTable.integer("points2").defaultTo(0);
+    gamesTable.boolean("game over").defaultTo(false);
+    gamesTable.boolean("active").defaultTo(false);
     gamesTable.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };
