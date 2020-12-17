@@ -10,4 +10,15 @@ const code = "$"+ secondChar+ thirdChar + fourthChar;
 };
 
 
-module.exports ={passwordGenerator}
+const radnomCoordinate = (size)=>{
+  if(!size) return '';
+  if(size === 1) return "1:1"
+  let x = Math.round(Math.random() * size);
+  let y = Math.round(Math.random() * size);
+   if(x === 0) x++;
+   if(y === 0) y++;
+
+  return `${x}:${y}`;
+}
+
+module.exports ={passwordGenerator, radnomCoordinate}
