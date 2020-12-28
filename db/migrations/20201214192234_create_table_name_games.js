@@ -13,7 +13,7 @@ exports.up = function(knex) {
     gamesTable.boolean("game over").defaultTo(false);
     gamesTable.boolean("active").defaultTo(false);
     gamesTable.timestamp("created_at").defaultTo(knex.fn.now());
-    knex('games').insert({ snake1: [[[2,15],[3,15]],[4,15]], snake2: [[[28,15],[27,15]],[29,15]] , food :radnomCoordinate(30)});
+   
   });
   
 };
