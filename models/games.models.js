@@ -14,5 +14,11 @@ const createGame = (player1)=>{
     });
 }
 
-
-module.exports ={createGame}
+const seeGameById =(game_id)=>{
+return connection
+    .select("*").from("games").where("game_id", game_id).then((res)=>{
+    
+      return res[0]
+    })
+}
+module.exports ={createGame, seeGameById}
