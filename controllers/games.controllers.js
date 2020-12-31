@@ -20,9 +20,9 @@ seeGameById(game_id).then((game)=>{
 }
 const patchGame =(req,res)=>{
   const {game_id} = req.params;
-  const {active} = req.body;
- 
-changeGame(game_id,active).then((game)=>{
+  const {active, game_over} = req.body;
+
+changeGame(game_id,active, game_over).then((game)=>{
   
   res.status(200).send({game})
 })
