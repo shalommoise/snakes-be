@@ -1,4 +1,4 @@
-const {passwordGenerator, radnomCoordinate} = require("../utils/utils");
+const {passwordGenerator, radnomCoordinate, strToArr, arrToStr} = require("../utils/utils");
 
 describe("passwordGenerator",()=>{
   test('Returns string', () => {
@@ -33,7 +33,7 @@ describe("passwordGenerator",()=>{
   });
 })
 
-describe.only("radnomCoordinate", ()=>{
+describe("radnomCoordinate", ()=>{
   test('returns empty string', () => {
     expect(radnomCoordinate()).toBe("")
   });
@@ -61,4 +61,23 @@ describe.only("radnomCoordinate", ()=>{
     expect(arr[1] % 1).toBe(0);
    
   });
+})
+
+describe.only("strToArr", ()=>{
+it('empty str returns empty array', () => {
+  expect(strToArr()).toEqual([]);
+});
+it('one number to array', () => {
+  expect(strToArr('12')).toEqual([12]);
+});
+it('convert coordinate str', () => {
+  expect(strToArr('12:7')).toEqual([[12, 7]]);
+});
+it('convert multiple coordinate strs', () => {
+  expect(strToArr('12:7,12:8')).toEqual([[12, 7],[12,8]]);
+});
+it('separate snake head', () => {
+   expect(strToArr('28:15,27:15|29:15')).toEqual([[[28,15],[27,15]],[29,15]]);
+});
+
 })

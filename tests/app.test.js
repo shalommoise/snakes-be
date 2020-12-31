@@ -9,7 +9,7 @@ describe("/api", ()=>{
 it('201 POST new game', () => {
      return request(app)
      .post("/api/games").send({player1: "Sam"}).expect(201).then((res)=>{
-      // console.log(res.body.game)
+      console.log(res.body.game)
       expect(res.body.game.player1).toBe("Sam");
        expect(res.body.game.snake1).toBe("2:15,3:15|4:15")
      })
@@ -43,8 +43,37 @@ return request(app)
     .send({active: true})
    .expect(200)
     .then((res)=>{
+      
       expect(res.body.game.active).toBe(true);
     })
   })
-   
+   it("200 PATCH game over", ()=>{
+return request(app)
+    .patch("/api/games/1")
+    .send({game_over: true})
+   .expect(200)
+    .then((res)=>{
+      expect(res.body.game.game_over).toBe(true);
+    })
+
+   })
+   it("200 PATCH game over should trun active to false", ()=>{
+     return request(app)
+    .patch("/api/games/1")
+    .send({active: true})
+   .expect(200)
+    .then(()=>{
+      return request(app)
+    .patch("/api/games/1")
+    .send({game_over: true})
+   .expect(200)
+    .then((res)=>{
+      expect(res.body.game.game_over).toBe(true);
+       expect(res.body.game.active).toBe(false);
+    })
+
+   })
+     
+    })
+
 })

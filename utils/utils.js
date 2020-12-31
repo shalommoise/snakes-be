@@ -20,5 +20,23 @@ const radnomCoordinate = (size)=>{
 
   return `${x}:${y}`;
 }
+const strToArr = (str)=>{
+  if (!str) return [];
+  if(!str.includes(":")) return [ + str];
+  const splitHead = str.split("|");
+ const [body, head] = splitHead;
+if(!head){
+const arr = body.split(",");
+return arr.map(item=>item.split(":").map(num=>+num));
+ 
+}
+  const cordArr = body.split(",");
+  const formattHead = head.split(":").map((num)=> +num)
+  const formattBody = cordArr.map((cord)=>cord.split(":")).map((arr)=>arr.map((num)=>+num))
 
-module.exports ={passwordGenerator, radnomCoordinate}
+   
+  return [formattBody, formattHead]
+
+};
+const arrToStr = ()=>{}
+module.exports ={passwordGenerator, radnomCoordinate, strToArr, arrToStr}
