@@ -37,6 +37,14 @@ return request(app)
     })     
      })
 });
-  
+  it("200 PATCH game status", ()=>{
+    return request(app)
+    .patch("/api/games/1")
+    .send({active: true})
+   .expect(200)
+    .then((res)=>{
+      expect(res.body.game.active).toBe(true);
+    })
+  })
    
 })

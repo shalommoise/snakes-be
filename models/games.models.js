@@ -21,4 +21,18 @@ return connection
       return res[0]
     })
 }
-module.exports ={createGame, seeGameById}
+
+const changeGame =(game_id, active)=>{
+   
+return connection
+    .select("*")
+    .from("games")
+    .where("game_id", game_id)
+    .update('active', active)
+    .returning("*")
+    .then((res)=>{
+      return res[0];
+    })
+
+}
+module.exports ={createGame, seeGameById, changeGame}

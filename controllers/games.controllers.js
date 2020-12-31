@@ -1,5 +1,5 @@
 
-const {createGame, seeGameById} = require("../models/games.models")
+const {createGame, seeGameById, changeGame} = require("../models/games.models")
 const postGame = (req, res)=>{
 const {player1} = req.body;
 
@@ -18,5 +18,15 @@ seeGameById(game_id).then((game)=>{
 })
 
 }
+const patchGame =(req,res)=>{
+  const {game_id} = req.params;
+  const {active} = req.body;
+ 
+changeGame(game_id,active).then((game)=>{
+  
+  res.status(200).send({game})
+})
 
-module.exports = {postGame, getGameById}
+}
+
+module.exports = {postGame, getGameById, patchGame}
