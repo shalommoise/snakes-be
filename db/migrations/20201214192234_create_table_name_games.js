@@ -10,7 +10,7 @@ exports.up = function(knex) {
     gamesTable.string("food").defaultsTo(radnomCoordinate(30));
     gamesTable.integer("points1").defaultTo(0);
     gamesTable.integer("points2").defaultTo(0);
-    gamesTable.boolean("game over").defaultTo(false);
+    gamesTable.boolean("game_over").defaultTo(false);
     gamesTable.boolean("active").defaultTo(false);
     gamesTable.timestamp("created_at").defaultTo(knex.fn.now());
    
