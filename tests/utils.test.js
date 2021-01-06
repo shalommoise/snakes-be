@@ -63,7 +63,7 @@ describe("radnomCoordinate", ()=>{
   });
 })
 
-describe.only("strToArr", ()=>{
+describe("strToArr", ()=>{
 it('empty str returns empty array', () => {
   expect(strToArr()).toEqual([]);
 });
@@ -84,11 +84,29 @@ it('Large snake', ()=>{
 })
 })
 
-describe.only("attToStr", ()=>{
+describe("arrToStr", ()=>{
   it('returns empty array', ()=>{
-    expect(arrToStr()).toEqual('');
+    expect(arrToStr()).toBe('');
   })
   it('empty array to string', ()=>{
-      expect(arrToStr([])).toEqual('');
+      expect(arrToStr([])).toBe('');
   })
+  it("array with 1 number", ()=>{
+      expect(arrToStr([55])).toBe('55');
+  })
+  it("convert 1 coordinate", ()=>{
+      expect(arrToStr([30,12])).toBe('30:12');
+  })
+  it("convert 2 cooridnates", ()=>{
+    expect(arrToStr([[[12, 7],[12,8]]])).toBe('12:7,12:8');
+  })
+it("convert multiple cooridnates", ()=>{
+    expect(arrToStr([[[12, 7],[12,8], [13,8],[13,7]]])).toBe('12:7,12:8,13:8,13:7');
+  })
+  it("converts snakeHead", ()=>{
+    expect(arrToStr([[[27,15],[28,15]],[29,15]])).toBe('27:15,28:15|29:15');
+  })
+  it('Large snake', ()=>{
+  expect(arrToStr([[[20,14],[20,15],[21,15],[22,15],[23,15],[24,15],[25,15],[26,15],[28,15],[27,15]],[29,15]])).toBe('20:14,20:15,21:15,22:15,23:15,24:15,25:15,26:15,28:15,27:15|29:15')
+})
 })

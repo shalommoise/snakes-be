@@ -38,7 +38,14 @@ return arr.map(item=>item.split(":").map(num=>+num));
   return [formattBody, formattHead]
 
 };
-const arrToStr = ()=>{
-  return '';
+const arrToStr = (arr)=>{
+  if(!arr || !arr[0]) return '';
+  if(+arr[0]) return arr.join(":");
+  const [body, head] = arr;
+
+  const coordinate =  body.map((cooridnate)=> cooridnate.join(":"));
+  if (head) return coordinate.join(',') + "|" +  head.join(":");
+  else return  coordinate.join(',');
+   
 }
 module.exports ={passwordGenerator, radnomCoordinate, strToArr, arrToStr}
