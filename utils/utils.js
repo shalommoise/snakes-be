@@ -38,5 +38,7 @@ return arr.map(item=>item.split(":").map(num=>+num));
   return [formattBody, formattHead]
 
 };
-const arrToStr = ()=>{}
+const arrToStr = ()=>{
+  return '';
+}
 module.exports ={passwordGenerator, radnomCoordinate, strToArr, arrToStr}

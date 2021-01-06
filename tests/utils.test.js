@@ -79,5 +79,16 @@ it('convert multiple coordinate strs', () => {
 it('separate snake head', () => {
    expect(strToArr('28:15,27:15|29:15')).toEqual([[[28,15],[27,15]],[29,15]]);
 });
+it('Large snake', ()=>{
+  expect(strToArr('20:14,20:15,21:15,22:15,23:15,24:15,25:15,26:15,28:15,27:15|29:15')).toEqual([[[20,14],[20,15],[21,15],[22,15],[23,15],[24,15],[25,15],[26,15],[28,15],[27,15]],[29,15]])
+})
+})
 
+describe.only("attToStr", ()=>{
+  it('returns empty array', ()=>{
+    expect(arrToStr()).toEqual('');
+  })
+  it('empty array to string', ()=>{
+      expect(arrToStr([])).toEqual('');
+  })
 })
