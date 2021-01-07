@@ -9,7 +9,7 @@ describe("/api", ()=>{
 it('201 POST new game', () => {
      return request(app)
      .post("/api/games").send({player1: "Sam"}).expect(201).then((res)=>{
-      console.log(res.body.game)
+
       expect(res.body.game.player1).toBe("Sam");
        expect(res.body.game.snake1).toBe("2:15,3:15|4:15")
      })
@@ -75,5 +75,34 @@ return request(app)
    })
      
     })
+it("200 PATCH snake1 position", ()=>{
+return request(app)
+    .patch("/api/games/1")
+    .send({snake1: "28:15,29:15|29:16"})
+     .expect(200).then((res)=>{
+      expect(res.body.game.snake1).toBe("28:15,29:15|29:16")
+     })
 
+})
+it("200 PATCH snake2 position", ()=>{
+return request(app)
+    .patch("/api/games/1")
+    .send({snake2: "28:15,29:15|29:16"})
+     .expect(200).then((res)=>{
+      expect(res.body.game.snake2).toBe("28:15,29:15|29:16")
+     })
+
+})
+it.only("200 PATCH food when snake1 || snake2 head === food", ()=>{
+return request(app).get("/api/games/1").expect(200).then((res)=>{
+  const {food} = res.body.game
+  console.log(food)
+  return request(app)
+    .patch("/api/games/1").send({snake1: `2:15,3:15|${food}`, snake2: "28:15,29:15|29:16"}).expect(200).then((res)=>{
+    
+      expect(res.body.game.food).not.toBe(food)
+    })
+})
+
+})
 })
