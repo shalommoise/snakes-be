@@ -107,4 +107,32 @@ return request(app).get("/api/games/1").expect(200).then((res)=>{
 })
 
 })
+
+it("200 PATCH snake1  eats itself === game over", ()=>{
+  return request(app)
+    .patch("/api/games/1").send({snake1: `2:15,3:15|3:15`, snake2: "28:15,29:15|29:16"})
+    .expect(200)
+    .then((res)=>{
+       expect(res.body.game.game_over).toBe(true)
+      
+    })
+})
+it("200 PATCH snake2  eats itself === game over", ()=>{
+  return request(app)
+    .patch("/api/games/1").send({snake1: `2:15,3:15|4:15`, snake2: '20:14,20:15,21:15,22:15,23:15,24:15,25:15,26:15,28:15,27:15|26:15'})
+    .expect(200)
+    .then((res)=>{
+       expect(res.body.game.game_over).toBe(true)
+      
+    })
+})
+it("200 PATCH snake1  eats snake2 === game over", ()=>{
+  return request(app)
+    .patch("/api/games/1").send({snake1: `2:15,3:15|4:15`, snake2: '4:15,5:15|6:15'})
+    .expect(200)
+    .then((res)=>{
+       expect(res.body.game.game_over).toBe(true)
+      
+    })
+})
 })

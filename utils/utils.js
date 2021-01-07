@@ -42,7 +42,6 @@ const arrToStr = (arr)=>{
   if(!arr || !arr[0]) return '';
   if(+arr[0]) return arr.join(":");
   const [body, head] = arr;
-
   const coordinate =  body.map((cooridnate)=> cooridnate.join(":"));
   if (head) return coordinate.join(',') + "|" +  head.join(":");
   else return  coordinate.join(',');

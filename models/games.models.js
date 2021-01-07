@@ -39,6 +39,8 @@ const [game] = res;
 const { food} = game;
    const snakeHead1  =  arrToStr(strToArr(snake1)[1]);
    const snakeHead2 =  arrToStr(strToArr(snake2)[1]);
+   
+const gameStatus = snake1 && snake2 ?  checkGame(snake1, snake2) : false; 
 const foodStatus = checkFoodLoc(food, snakeHead1, snakeHead2);
 
 if(foodStatus) {
@@ -52,7 +54,20 @@ if(foodStatus) {
     .then((res)=>{
     const [game] = res;
     return game
-})
+});
+}
+if(gameStatus){
+  return connection
+    .select("*")
+    .from("games")
+    .where("game_id", game_id)
+    .update('game_over', true).update('active', false)
+    .update(`points${gameStatus}`, game[`points${gameStatus}`]/2)
+    .returning("*")
+    .then((res)=>{
+    const [game] = res;
+    return game
+});
 }
       return game;
   
@@ -62,10 +77,22 @@ if(foodStatus) {
 }
 
 const checkFoodLoc =(food, snakeHead1, snakeHead2)=>{
-  
       if(food === snakeHead1) return 1;
       else if (food === snakeHead2) return 2;
       else return false;
       
+}
+const checkGame = (snake1,snake2)=>{
+  
+  const [body1, head1] = strToArr(snake1);
+  const [body2, head2] = strToArr(snake2);
+  const stat1a = body1.filter(element => element.toString() === head1.toString());
+  const stat2a = body2.filter(element => element.toString() === head2.toString());
+  const stat2b = body1.filter(element => element.toString() === head2.toString());
+  const stat1b = body2.filter(element => element.toString() === head1.toString());
+
+  if(stat1a.length > 0|| stat1b.length > 0 ) return 1;
+  if(stat2a.length > 0 ||stat2b.length > 0 ) return 2;
+else return false;
 }
 module.exports ={createGame, seeGameById, changeGame}
