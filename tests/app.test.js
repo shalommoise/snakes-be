@@ -93,14 +93,16 @@ return request(app)
      })
 
 })
-it.only("200 PATCH food when snake1 || snake2 head === food", ()=>{
+it("200 PATCH food when snake1 || snake2 head === food", ()=>{
 return request(app).get("/api/games/1").expect(200).then((res)=>{
   const {food} = res.body.game
-  console.log(food)
+
   return request(app)
-    .patch("/api/games/1").send({snake1: `2:15,3:15|${food}`, snake2: "28:15,29:15|29:16"}).expect(200).then((res)=>{
-    
-      expect(res.body.game.food).not.toBe(food)
+    .patch("/api/games/1").send({snake1: `2:15,3:15|${food}`, snake2: "28:15,29:15|29:16"})
+    .expect(200)
+    .then((res)=>{
+       expect(res.body.game.food).not.toBe(food)
+      expect(res.body.game.points1).toBe(1)
     })
 })
 
