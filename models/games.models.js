@@ -15,10 +15,17 @@ const createGame = (player1)=>{
 }
 
 const seeGameById =(game_id)=>{
+
 return connection
-    .select("*").from("games").where("game_id", game_id).then((res)=>{
+    .select("*")
+    .from("games")
+    .where("game_id", game_id)
+    .then((res)=>{
     
       return res[0]
+    }).catch((err)=>{
+  
+      return err;
     })
 }
 

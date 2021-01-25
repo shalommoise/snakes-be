@@ -13,7 +13,7 @@ const getGameById =(req,res)=>{
 const {game_id} = req.params
 
 seeGameById(game_id).then((game)=>{
- 
+
   res.status(200).send({game})
 })
 

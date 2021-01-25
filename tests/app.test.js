@@ -6,6 +6,15 @@ describe("/api", ()=>{
    beforeEach(() => connection.seed.run());
    afterAll(() => connection.destroy());
    describe("/games", ()=>{
+     it("404 Error - mispell addrss", ()=>{
+       return request(app).get("/api/gams/1")
+      .expect(404)
+      .then((res)=>{   
+      expect(res.body.msg).toBe("404 Error: Path Not found")
+    
+      })
+   })
+    
 it('201 POST new game', () => {
      return request(app)
      .post("/api/games").send({player1: "Sam"}).expect(201).then((res)=>{
@@ -131,8 +140,10 @@ it("200 PATCH snake1  eats snake2 === game over", ()=>{
     .patch("/api/games/1").send({snake1: `2:15,3:15|4:15`, snake2: '4:15,5:15|6:15'})
     .expect(200)
     .then((res)=>{
+      
        expect(res.body.game.game_over).toBe(true)
       
     })
 })
+
 })
