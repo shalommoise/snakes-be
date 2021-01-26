@@ -4,7 +4,8 @@ const config = require("../knexfile");
 
 const dbConfig =
 // ENV === "development"
-  ENV === "test"
+  // ENV === "test"
+  ENV === "production"
     ? { client: "pg", connection: process.env.DATABASE_URL }
     : config;
 
