@@ -4,7 +4,7 @@ const knex = require("knex");
 
 const dbConfig =
 
-  ENV === "development"
+  ENV === "production"
     ? { client: "pg", connection: process.env.DATABASE_URL }
     : require("../knexfile");
 
