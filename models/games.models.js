@@ -1,10 +1,11 @@
 
 const connection = require("../db/connection");
-const {strToArr, radnomCoordinate, arrToStr} = require("../utils/utils")
+const {strToArr, radnomCoordinate, arrToStr, passwordGenerator} = require("../utils/utils")
 const createGame = (player1)=>{
    return connection
     .insert({
-     player1: player1
+     player1: player1,
+     login_code: passwordGenerator()
     })
     .into("games")
     .returning("*")
